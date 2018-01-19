@@ -41,8 +41,7 @@ class BinarySearchTree(object):
         else:
             node = TreeNode(key, value)
             self.root = node
-
-        self.size = self.size + 1
+            self.size = self.size + 1
 
     def remove(self, key):
         if self.size > 1:
@@ -62,6 +61,12 @@ class BinarySearchTree(object):
         else:
             return None
 
+    def max(self):
+        return self._find_max(self.root).key
+
+    def min(self):
+        return self._find_min(self.root).key
+
     def show(self):
         root = self.root
         self.inOrder(root)
@@ -72,15 +77,24 @@ class BinarySearchTree(object):
         先遍历左子树，在访问自己，在遍历右子树
         """
 
+        if not node:
+            return
+
         if node.leftChild:
             left = node.leftChild
             self.inOrder(left)
 
-        print ('%s' % (str(node.key)))
+        print ('%s(%s)' % (str(node.key), str(node.value)))
 
         if node.rightChild:
             right = node.rightChild
             self.inOrder(right)
+
+    @property
+    def depth(self):
+
+        return self._get_depth(self.root)
+
 
     def _add_new(self, key, value, node):
         if key < node.key:
@@ -94,7 +108,7 @@ class BinarySearchTree(object):
             else:
                 node.rightChild = TreeNode(key, value, parent=node)
         else:
-            print ("this key has exist")
+            node.value = value
 
     def _find(self, key, node):
         if not node:
@@ -162,16 +176,40 @@ class BinarySearchTree(object):
             node = node.rightChild
         return node
 
+    def _find_min(self, root_node):
+        node = root_node
+        while node.leftChild:
+            node = node.leftChild
+        return node
+
+    def _get_depth(self,node):
+
+        if not node:
+            return 0
+
+        left =  self._get_depth(node.leftChild)
+        right =  self._get_depth(node.rightChild)
+
+        return left + 1 if left > right else right + 1
 
 if __name__ == '__main__':
     tree = BinarySearchTree()
-    tree[9] = 5
-    tree[18] = 5
-    tree[1] = 5
     tree[2] = 5
+    tree[1] = 5
+    tree[1] = 8
     tree[3] = 5
+    tree[100] = 3
+    tree[34] = 0
+
+    # tree.show()
+    # del tree[2]
+    # print ('----')
+    # tree.show()
+    # del tree[3]
+    # print ('----')
+    # tree.show()
+    # del tree[1]
+    # print ('----')
     tree.show()
-    del tree[9]
-    print ('----')
-    #tree.show()
-    print tree.root.key
+    print (tree.max(), tree.min())
+    print tree.depth
