@@ -75,8 +75,7 @@ def print_tree_by_level(tree, depth):
 
 # 树的层次遍历
 def level_order(tree):
-    node_queue = []
-    node_queue.append(tree)
+    node_queue = [tree]
 
     while node_queue:
         node = node_queue[0]
@@ -123,14 +122,29 @@ def max_leaf_node(tree):
     return max(depth_left_nodes.values())
 
 
+# 判断是否是平衡树
+def is_avl(tree):
+    if not tree:
+        return -1
+
+    left_depth = is_avl(tree.left) + 1
+    right_depth = is_avl(tree.right) + 1
+
+    if abs(left_depth - right_depth) > 1:
+        print ('not AVL')
+
+    return max(left_depth, right_depth)
+
+
 if __name__ == '__main__':
-    pre_order = [4, 2, 1, 3, 10, 6, 5, 7, 8]
-    in_order = [1, 2, 10, 3, 4, 5, 6, 7, 8]
-    tree = rebuild_tree_from_per_and_in_order(pre_order, in_order)
-    inOrder(tree)
+    preorder = [4, 2, 1, 3, 5, 7]  # [4, 2, 1, 3, 10, 6, 5, 7, 8]
+    inorder = [1, 2, 3, 4, 5, 7]  # [1, 2, 10, 3, 4, 5, 6, 7, 8]
+    tree_1 = rebuild_tree_from_per_and_in_order(preorder, inorder)
+    inOrder(tree_1)
     # preOrder(tree)
 
     # print_tree_by_level(tree, 3)
     # level_order(tree)
     print ('-----')
-    max_leaf_node(tree)
+    # max_leaf_node(tree)
+    is_avl(tree_1)
