@@ -14,3 +14,7 @@ tree_subject.py
 
 隐式马尔可夫链：
 hmm.py 通过监督训练生成隐式马尔可夫链,采用维特比算法进行预测
+
+字符串：
+string_subject.py
+1.字符串循环位移
