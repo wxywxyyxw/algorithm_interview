@@ -104,13 +104,13 @@ class BinaryTree(object):
         """
         node = self
         tree_stack = []
-        while node or len(tree_stack) > 0:
+        while node or len(tree_stack) > 0: #node存在或者栈不为空
 
-            while node:
+            while node:  #先沿左子树直到叶子结点，输入，入栈
                 print (node.value)
                 tree_stack.append(node)
                 node = node.leftChild
-            if len(tree_stack) > 0:
+            if len(tree_stack) > 0: #栈不为空的话，pop一个,把node设为它的右孩子开始大循环
                 node = tree_stack.pop()
                 node = node.rightChild
 
@@ -141,14 +141,14 @@ class BinaryTree(object):
         node_stack = []
         pre = None
         node_stack.append(node)
-        while len(node_stack) > 0:
-            cur = node_stack[-1]
+        while len(node_stack) > 0:  #栈不为空
+            cur = node_stack[-1] #取栈的最后一个元素
 
-            # 叶子结点或者 子节点已被访问
+            # 没有叶子结点  或者 子节点已被访问
             if (not cur.leftChild and not cur.rightChild) \
                     or (pre and (pre in [cur.rightChild, cur.leftChild])):
-                print (cur.value)
-                pre = node_stack.pop()
+                print (cur.value) #输出
+                pre = node_stack.pop()  #把我从栈里pop出，然后flag=我
             else:
                 if cur.rightChild:
                     node_stack.append(cur.rightChild)

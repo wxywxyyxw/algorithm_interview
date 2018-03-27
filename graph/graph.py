@@ -55,21 +55,22 @@ def dfs(self,first_node):
     stack_lsit = []
     visited = []
     stack_lsit.append(first_node)
-    visited.append(first_node)
+    print(first_node.data)
+    visited.append(first_node) # 加到栈里面的结点都是被访问过的
     while len(stack_lsit) > 0:
         x = stack_lsit[-1]
         for w in x.neighbor_list:
             if not w in visited:
                 print(w.data)
                 visited.append(w)
-                stack_lsit.append(w)
+                stack_lsit.append(w) #只要加到栈里面就从新开始栈的循环
                 break
 
-        stack_lsit.pop()
+        stack_lsit.pop() # 我所有的临接点都被访问了，我没用了，pop
 
 # 图的广度遍历
-# 利用 栈 和 一个已访问列表来 实现深度遍历的非递归
-def bsf(first_node):
+# 利用 队列 和 一个已访问队列来 实现深度遍历的非递归
+def bfs(first_node):
     queue = Queue(100000)
     visited = []
     queue.put(first_node)
@@ -77,13 +78,13 @@ def bsf(first_node):
     print first_node.data
 
     while not queue.empty():
-        node =queue.get()
+        node =queue.get() # 先取出来 在看它的临接点
         neighbors = node.neighbor_list
         for neighbor in neighbors:
             if neighbor not in visited:
                 print neighbor.data
                 visited.append(neighbor)
-                queue.put(neighbor)
+                queue.put(neighbor) # 先访问后在加入队列
 
 """
 连通图：在无向图中，若任意两个顶点vi与vj都有路径相通，则称该无向图为连通图。
@@ -95,12 +96,14 @@ def bsf(first_node):
 
 
 
+
+
 class GraphNode:
     def __init__(self,data):
         self.neighbor_list = []
         self.data = data
 
-if __name__ == '__main__':
+def test_graph():
     node_a = GraphNode('a')
     node_b = GraphNode('b')
     node_c = GraphNode('c')
@@ -115,6 +118,15 @@ if __name__ == '__main__':
     node_e.neighbor_list = [node_b,node_f]
     node_f.neighbor_list = [node_e]
 
-    bsf(node_a)
+    bfs(node_a)
+
+
+def dijkstra(first_node):
+    pass
+
+
+if __name__ == '__main__':
+    pass
+
 
 
