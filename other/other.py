@@ -89,6 +89,7 @@ def new_and_init():
     print (obj1 is obj2)
 
 
+# 实现但例模式
 def test_singleton():
     # cls是类
     def Singleton(cls):
@@ -118,6 +119,7 @@ def test_singleton():
     print a2.x  # 2
 
 
+# lambda函数
 def test_lambada():
     li = [lambda: x for x in range(10)]
 
