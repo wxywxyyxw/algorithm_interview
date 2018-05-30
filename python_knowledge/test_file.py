@@ -7,7 +7,7 @@ import os
 
 if __name__ == "__main__":
     print __file__, type(__file__)
-    #  输出当前文件全路径 /Users/wangxiaoyang/PycharmProjects/sentiment/tmp/test_file.py <type 'str'>
+    #  输出当前文件全路径 /Users/wangxiaoyang/PycharmProjects/algorithm_interview/python_knowledge/test_file.py  <type 'str'>
     print os.path.dirname(__file__)
     #  输出文件所在目录  /Users/wangxiaoyang/PycharmProjects/algorithm_interview/python_knowledge
     file_path = os.path.dirname(__file__)
