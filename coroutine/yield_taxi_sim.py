@@ -98,8 +98,9 @@ def main(end_time=DEFAULT_END_TIME, num_taxis=DEFAULT_NUMBER_OF_TAXIS,
     if seed is not None:
         random.seed(seed)  # 获取可复现的结果
     # 构建taxis 字典。值是三个参数不同的生成器对象。
-    taxis = {i: taxi_process(i, (i + 1) * 2, i * DEPARTURE_INTERAVAL)
-             for i in range(num_taxis)}
+    taxis = {
+                i: taxi_process(i, (i + 1) * 2, i * DEPARTURE_INTERAVAL) for i in range(num_taxis)
+            }
 
     print ("taxis: ",taxis)
     sim = Simulator(taxis)
