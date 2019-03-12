@@ -88,5 +88,90 @@ data = {
     'boys;m': [1.6, 1.8, 1.8, 1.7, 1.55, 1.6],
 }
 
+
+def get_list_item(item_list):
+    for item in item_list:
+        if isinstance(item,list):
+            yield 'in'
+            yield from get_list_item(item)
+            yield 'out'
+        else:
+
+            yield item
+
+def create_new_list(origin_list):
+    temp_list = []
+    origin_list.append(temp_list)
+    return temp_list
+
+def list_grouper(a,key):
+    while True:
+        a[key] = yield from create_list()
+
+class Node(object):
+    def __init__(self):
+        self.node_list = []
+        self.up_node = None
+
+def create_list():
+    init_list = []
+    iter = init_list
+    iter_parent_list = []
+    while True:
+        term = yield
+
+        if term == None:
+            break
+
+        if term  == 'in':
+            iter_parent_list.append(iter)
+            iter = create_new_list(iter)
+        elif term ==  'out':
+            iter = iter_parent_list.pop()
+        else:
+            #print ('insert %s',term)
+            iter.append(term)
+
+    return init_list
+
+
+
+
+
+def test_list():
+    class_ids = [[1,2,[4,[100,200]]],[4,5,6]]
+    #class_ids = [[1,2,3],[4,5,6]]
+    new_list= {}
+    group = list_grouper(new_list, 'a')
+    next(group)
+
+    for item in get_list_item(class_ids):
+
+        # if item == 'in':
+        #     iter = create_list(iter)
+        # elif:
+        #     iter.append(item)
+        print (item)
+        group.send(item)
+    group.send(None)
+    print (new_list)
+
+
+
+
+
+
+
+
+
 if __name__ == '__main__':
-    main(data)
+    #main(data)
+    test_list()
+    #a = create_list()
+    # cc= {}
+    # group = list_grouper(cc, 3)
+    # next(group)
+    # group.send(10)
+    # group.send(20)
+    # group.send('exit')
+    # print (cc)
