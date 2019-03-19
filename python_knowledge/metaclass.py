@@ -39,7 +39,7 @@ class Hello(object, metaclass =SayMetaClass):
     pass
 
 hello =Hello()# 创建实列
-hello.say_Hello( 'gregory')# 调用实例方法
+hello.say_Hello(value='gregory',saying='111')# 调用实例方法
 
 class Nihao(object,metaclass=SayMetaClass):
     pass
@@ -122,5 +122,5 @@ class User(Model):
 
 print (User.__dict__)
 
-#u = User(id=12345, name='Gregory', email='292409083@qq.com', password='iamgreg')
-#u.save()
+u = User(id=12345, name='Gregory', email='292409083@qq.com', password='iamgreg',w=5)
+u.save()

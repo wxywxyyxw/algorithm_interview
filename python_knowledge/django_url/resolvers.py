@@ -40,6 +40,9 @@ class URLResolver:
 
 
 class URLPattern:
+    """
+    path匹配成功后，返回ResolverMatch
+    """
     def __init__(self, pattern, callback):
         self.pattern = pattern
         self.callback = callback  # the view
@@ -51,6 +54,9 @@ class URLPattern:
             return ResolverMatch(self.callback, args, kwargs)
 
 class ResolverMatch:
+    """
+    路径与函数的结合
+    """
     def __init__(self, func, args, kwargs):
         self.func = func
         self.args = args
@@ -64,6 +70,9 @@ class ResolverMatch:
 
 
 class RegexPattern:
+    """
+    返回正则匹配的余下部分
+    """
     def __init__(self, regex):
         self.regex = re.compile(regex)
 

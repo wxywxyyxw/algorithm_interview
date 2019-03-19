@@ -1,0 +1,21 @@
+django url 的匹配机制：通过深度优先搜索来匹配url
+eg:
+
+urls1:
+path1,func1
+path3,urls2
+path2,func2
+
+
+urls2:
+path4,func4
+path5,func5
+path6,func6
+
+匹配:path_input = path3+path6
+1 通过regex 匹配到path3，path_input截取path3后得到path_input2(path6).
+2 遍历urls2,通过regex匹配到path6。
+3 得到对应的func->func6。
+
+
+
