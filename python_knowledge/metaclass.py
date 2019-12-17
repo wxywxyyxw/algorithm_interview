@@ -123,4 +123,10 @@ class User(Model):
 print (User.__dict__)
 
 u = User(id=12345, name='Gregory', email='292409083@qq.com', password='iamgreg',w=5)
-u.save()
+# u.save()
+
+# class A():
+#     a = 1
+#     b = {"cc":3}
+#
+# print (A.__dict__)

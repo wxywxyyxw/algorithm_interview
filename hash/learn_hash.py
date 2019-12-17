@@ -87,7 +87,7 @@ class HashMap(object):
 if __name__ == '__main__':
     lin = LinearMap()
     lin.add('a',1)
-    print lin.get('a')
+    print (lin.get('a'))
 
     print ('------------------------')
 
@@ -105,7 +105,7 @@ if __name__ == '__main__':
     for item, price in pricedata:
         table.add(k=item, v=price)
 
-    print table.get("CX12")
-    # >>> 1130
-    print table.get("QIMEI1248")
+    # print table.get("CX12")
+    # # >>> 1130
+    # print table.get("QIMEI1248")
     # >>> raise KeyError

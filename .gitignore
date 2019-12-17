@@ -1,4 +1,7 @@
 .idea
 *.xml
 *.pyc
-
+*.log
+*.xls
+*.pyc
+*.txt

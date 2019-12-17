@@ -37,11 +37,8 @@ class Solution:
                     last_index = i+1
                 pre = i-1
                 nex = i+2
-            else:
-                pre = i-1
-                nex = i+1
 
-            first_index, last_index, longest = find_sub(pre,nex,s,first_index,last_index,longest)
+                first_index, last_index, longest = find_sub(pre,nex,s,first_index,last_index,longest)
 
 
 
@@ -101,5 +98,5 @@ def main():
             break
 
 if __name__ == '__main__':
-    ret = Solution().longestPalindrome("aaaa")
+    ret = Solution().longestPalindrome1("ccc")
     print (ret)

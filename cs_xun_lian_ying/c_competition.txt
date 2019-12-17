@@ -1,0 +1,75 @@
+#!/usr/bin/env python3
+
+# while (1):
+#
+#
+# a, b = map(int, input().split(' '))
+# print(a + b)
+
+m,n,p = map(int, input().split(' '))
+
+
+
+name_list = []
+for _ in range(m):
+    name_list.append(input())
+
+zhengci = []
+zhengci_dict = {}
+day_dict = {}
+copy_name_list = [-1 for _ in range(m)]
+for _ in range(p):
+    x = input()
+    key,value = x.split(": ")
+    if key not in zhengci_dict:
+        zhengci_dict[key] = [value]
+    else:
+        zhengci_dict[key].append(value)
+
+    if "Today" in value:
+        if value not in day_dict:
+            day_dict[value] = [key]
+        else:
+            day_dict[value].append(key)
+
+for xiong_shou in name_list:
+    fake_name = []
+    real_name = []
+    for name in zhengci_dict:
+        zhengci_list = zhengci_dict[name]
+
+        for item in zhengci_list:
+            if item == "I am guilty.":
+                if name != xiong_shou:
+                    fake_name.append(name)
+                else:
+                    real_name.append(name)
+            elif item == "I am not guilty.":
+                pass
+            elif "is guilty." in item:
+                if xiong_shou in item:
+                    real_name.append(name)
+                else:
+                    fake_name.append(name)
+            elif "is not guilty." in item:
+                if xiong_shou in item:
+                    fake_name.append(name)
+                else:
+                    real_name.append(name)
+
+    fake_name = list(set(fake_name))
+    real_name = list(set(real_name))
+
+
+    if len(fake_name) != n:
+        print ("Impossible")
+    else:
+        print(xiong_shou)
+
+
+
+
+
+
+
+
